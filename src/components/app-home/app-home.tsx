@@ -5,6 +5,14 @@ import { Component } from '@stencil/core';
   styleUrl: 'app-home.css'
 })
 export class AppHome {
+
+  refresh(event: any): void {
+    console.log(event);
+    setTimeout(() => {
+      event.target.complete();
+    }, 1000);
+  }
+  
   render() {
     return [
       <ion-header>
@@ -13,6 +21,9 @@ export class AppHome {
         </ion-toolbar>
       </ion-header>,
       <ion-content padding>
+        <ion-refresher slot="fixed" onIonRefresh={(event) => this.refresh(event)}>
+          <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
         <p>
           Welcome to the PWA Toolkit. You can use this starter to build entire
           apps with web components using Stencil and ionic/core! Check out the

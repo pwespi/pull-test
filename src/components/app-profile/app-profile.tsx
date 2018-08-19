@@ -58,6 +58,13 @@ export class AppProfile {
     });
   }
 
+  refresh(event: any): void {
+    console.log(event);
+    setTimeout(() => {
+      event.target.complete();
+    }, 1000);
+  }
+
   render() {
     return [
       <ion-header>
@@ -69,6 +76,9 @@ export class AppProfile {
         </ion-toolbar>
       </ion-header>,
       <ion-content padding>
+        <ion-refresher slot="fixed" onIonRefresh={(event) => this.refresh(event)}>
+          <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
         <p>
           Hello! My name is {this.name}. My name was passed in through a route
           param!
